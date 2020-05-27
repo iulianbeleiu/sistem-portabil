@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Pacient, DateMedicale, Recomandari, Adresa
 
+admin.site.site_header = "Administrare Sistem Portabil"
 
 class Adresadmin(admin.ModelAdmin):
     list_display = ('id', 'tara', 'judet', 'localitate', 'strada', 'user')
