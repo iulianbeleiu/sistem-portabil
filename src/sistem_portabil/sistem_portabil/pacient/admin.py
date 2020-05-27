@@ -14,7 +14,7 @@ class Adresadmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super(Adresadmin, self).get_queryset(request)
         if not request.user.is_superuser:
-            return qs.filter(Q(user=request.user) | Q(user=request.user))
+            return qs.filter(user=request.user)
         return qs
 
 admin.site.register(Adresa, Adresadmin)
