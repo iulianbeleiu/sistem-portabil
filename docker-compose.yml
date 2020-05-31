@@ -8,9 +8,9 @@ services:
         volumes:
             - .:/sistem_portabil
         ports:
-            - 80:80
+            - 8000:8000
         env_file: .env
-        command: django-admin runserver 0.0.0.0:80
+        command: django-admin runserver 0.0.0.0:8000
         links:
             - db
         depends_on:
