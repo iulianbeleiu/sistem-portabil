@@ -3,6 +3,7 @@ from .models import Pacient, DateMedicale, Recomandari, Adresa
 
 admin.site.site_header = "Administrare Sistem Portabil"
 
+
 class Adresadmin(admin.ModelAdmin):
     list_display = ('id', 'tara', 'judet', 'localitate', 'strada', 'user')
     search_fields = ('tara', 'judet', 'localitate')
@@ -23,6 +24,7 @@ admin.site.register(Adresa, Adresadmin)
 
 class PacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'nume', 'prenume', 'user')
+    list_display_links = ('id', 'nume', 'prenume')
     list_filter = ('nume', 'prenume')
     search_fields = ('nume', 'prenume')
     exclude = ['user',]
