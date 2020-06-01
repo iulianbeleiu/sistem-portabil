@@ -1,0 +1,11 @@
+{% extends "admin/index.html" %}
+
+{% block sidebar %}
+    {{ block.super }}
+
+    {% if not user.is_superuser and not "Doctor" in user.groups.values.get.values %}
+        <iframe class="module" style="width: 100%;min-height: 200px;" src="https://emares.ro/projects/ecg/index.html#{{original.id}}">
+
+        </iframe>
+    {% endif %}
+{% endblock %}

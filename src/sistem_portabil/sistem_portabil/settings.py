@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sistem_portabil.pacient'
+    'sistem_portabil.pacient',
+    'sistem_portabil.fisa_medicala'
 ]
 
 MIDDLEWARE = [
