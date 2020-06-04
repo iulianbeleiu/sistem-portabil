@@ -68,3 +68,4 @@ class Adresa(models.Model):
 
     def __str__(self):
         return f"{self.tara} {self.judet} {self.localitate}"
+

@@ -1,9 +1,21 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import Pacient, DateMedicale, Recomandari, Adresa
+from sistem_portabil.fisa_medicala.models import RecomandariPacient, DateMedicalePacient, AvertizarePacient, AdresaPacient
 
 admin.site.site_header = "Administrare Sistem Portabil"
 
+class ReocomandariInline(admin.TabularInline):
+    model = RecomandariPacient
+    max_num = 4
+
+class DateMedicaleInline(admin.TabularInline):
+    model = DateMedicalePacient
+    max_num = 1
+
+class AvertizarePacientInline(admin.TabularInline):
+    model = AvertizarePacient
+    max_num = 3
 
 class Adresadmin(admin.ModelAdmin):
     list_display = ('id', 'tara', 'judet', 'localitate', 'strada', 'user')
@@ -22,13 +34,18 @@ class Adresadmin(admin.ModelAdmin):
 
 admin.site.register(Adresa, Adresadmin)
 
+class AdresaPacientInline(admin.TabularInline):
+    model = AdresaPacient
+    max_num = 1
+
 
 class PacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'nume', 'prenume', 'user', 'user_pacient')
     list_display_links = ('id', 'nume', 'prenume')
     list_filter = ('nume', 'prenume')
     search_fields = ('nume', 'prenume')
-    exclude = ['user', 'date_medicale', 'recomandari']
+    exclude = ['user', 'date_medicale', 'recomandari', 'adresa']
+    inlines = [AdresaPacientInline]
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -42,7 +59,7 @@ class PacientAdmin(admin.ModelAdmin):
 
     def render_change_form(self, request, context, *args, **kwargs):
         context['adminform'].form.fields['user_pacient'].queryset = User.objects.filter(groups__name='Pacient')
-        context['adminform'].form.fields['adresa'].queryset = Adresa.objects.filter(user=request.user.id)
+        # context['adminform'].form.fields['adresa'].queryset = Adresa.objects.filter(user=request.user.id)
         return super(PacientAdmin, self).render_change_form(request, context, *args, **kwargs)
 
 admin.site.register(Pacient, PacientAdmin)

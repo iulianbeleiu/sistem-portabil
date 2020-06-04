@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from sistem_portabil.pacient.models import Pacient, Recomandari, DateMedicale
+from sistem_portabil.pacient.models import Pacient, Recomandari, DateMedicale, Adresa
 
 
 class RecomandariPacient(models.Model):
@@ -36,7 +36,13 @@ class AvertizarePacient(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Doctor')
     pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
-    avertizare = models.TextField()
+    avertizare = models.CharField(max_length=255)
 
     def __str__(self):
         return self.pacient.nume
+
+
+
+class AdresaPacient(models.Model):
+    adresa = models.ForeignKey(Adresa, on_delete=models.CASCADE)
+    pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE)
