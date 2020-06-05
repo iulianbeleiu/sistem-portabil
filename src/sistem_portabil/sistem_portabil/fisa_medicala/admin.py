@@ -23,8 +23,8 @@ class RecomandariPacientAdmin(admin.ModelAdmin):
             return qs
 
     def render_change_form(self, request, context, *args, **kwargs):
-        context['adminform'].form.fields['pacient'].queryset = Pacient.objects.filter(user=request.user.id)
-        context['adminform'].form.fields['recomandari'].queryset = Recomandari.objects.filter(user=request.user.id)
+        # context['adminform'].form.fields['pacient'].queryset = Pacient.objects.filter(user=request.user.id)
+        # context['adminform'].form.fields['recomandari'].queryset = Recomandari.objects.filter(user=request.user.id)
         return super(RecomandariPacientAdmin, self).render_change_form(request, context, *args, **kwargs)
 
 
@@ -51,7 +51,7 @@ class DateMedicalePacientAdmin(admin.ModelAdmin):
 
     def render_change_form(self, request, context, *args, **kwargs):
         # context['adminform'].form.fields['pacient'].queryset = Pacient.objects.filter(user=request.user.id)
-        context['adminform'].form.fields['date_medicale'].queryset = DateMedicale.objects.filter(user=request.user.id)
+        # context['adminform'].form.fields['date_medicale'].queryset = DateMedicale.objects.filter(user=request.user.id)
         return super(DateMedicalePacientAdmin, self).render_change_form(request, context, *args, **kwargs)
 
 
