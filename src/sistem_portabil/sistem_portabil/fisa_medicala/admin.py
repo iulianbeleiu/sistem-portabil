@@ -7,6 +7,7 @@ from sistem_portabil.pacient.models import Pacient, Recomandari, DateMedicale
 class RecomandariPacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'pacient', 'recomandari')
     exclude = ('user',)
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -33,6 +34,7 @@ admin.site.register(RecomandariPacient, RecomandariPacientAdmin)
 class DateMedicalePacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'pacient', 'date_medicale')
     exclude = ('user',)
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -59,6 +61,7 @@ admin.site.register(DateMedicalePacient, DateMedicalePacientAdmin)
 class AvertizarePacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'pacient', 'avertizare')
     exclude = ('user',)
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user

@@ -21,6 +21,7 @@ class Adresadmin(admin.ModelAdmin):
     list_display = ('id', 'tara', 'judet', 'localitate', 'strada', 'user')
     search_fields = ('tara', 'judet', 'localitate')
     exclude = ['user',]
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -42,10 +43,10 @@ class AdresaPacientInline(admin.TabularInline):
 class PacientAdmin(admin.ModelAdmin):
     list_display = ('id', 'nume', 'prenume', 'user', 'user_pacient')
     list_display_links = ('id', 'nume', 'prenume')
-    list_filter = ('nume', 'prenume')
     search_fields = ('nume', 'prenume')
     exclude = ['user', 'date_medicale', 'recomandari', 'adresa']
     inlines = [AdresaPacientInline]
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -67,9 +68,9 @@ admin.site.register(Pacient, PacientAdmin)
 
 class DateMedicaleAdmin(admin.ModelAdmin):
     list_display = ('id', 'istoric_medical', 'alergii', 'consultatii_cardiologice', 'user')
-    list_filter = ('istoric_medical', 'alergii', 'consultatii_cardiologice')
     search_fields = ('istoric_medical', 'alergii', 'consultatii_cardiologice')
     exclude = ('user',)
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
@@ -87,9 +88,9 @@ admin.site.register(DateMedicale, DateMedicaleAdmin)
 
 class RecomandariAdmin(admin.ModelAdmin):
     list_display = ('id', 'tip_recomandare', 'durata_zilnica', 'alte_indicatii', 'user')
-    list_filter = ('tip_recomandare', 'durata_zilnica', 'alte_indicatii')
     search_fields = ('tip_recomandare', 'durata_zilnica', 'alte_indicatii')
     exclude = ('user',)
+    list_per_page = 10
 
     def save_model(self, request, obj, form, change):
         obj.user = request.user
