@@ -8,7 +8,7 @@ class Pacient(models.Model):
         verbose_name_plural = 'Pacienti'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Doctor', related_name='user')
-    user_pacient = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='user_pacient', unique=True)
+    user_pacient = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='user_pacient')
     nume = models.CharField(max_length=200, null=False, blank=False, default='')
     prenume = models.CharField(max_length=200, null=False, blank=False, default='')
     varsta = models.IntegerField(blank=True, null=True)

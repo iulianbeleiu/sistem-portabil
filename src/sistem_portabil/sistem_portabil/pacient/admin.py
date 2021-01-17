@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Pacient, DateMedicale, Recomandari, Adresa
 from sistem_portabil.fisa_medicala.models import RecomandariPacient, DateMedicalePacient, AvertizarePacient, AdresaPacient
 
-admin.site.site_header = "Administrare Sistem Portabil"
+admin.site.site_header = "Administrare Pacienti"
 
 class ReocomandariInline(admin.TabularInline):
     model = RecomandariPacient
